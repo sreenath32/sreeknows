@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sreenath KN - Senior Software Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --highlight: #10b981;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-body: #f1f5f9;
+            --sidebar-bg: #f8fafc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 40px 20px;
+        }
+
+        .resume-card {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: white;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            padding: 40px 30px;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .sidebar-section { margin-bottom: 35px; }
+        .sidebar-title {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .contact-link {
+            display: block;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 3px;
+        }
+
+        /* Main Content Styling */
+        .main-content { padding: 50px; }
+        
+        header { margin-bottom: 40px; }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .role-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .summary-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        h2.section-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .experience-item {
+            margin-bottom: 35px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #f1f5f9;
+            transition: 0.3s;
+        }
+
+        .experience-item:hover { border-left-color: var(--accent); }
+
+        .job-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .job-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+        .job-date { color: var(--text-light); font-size: 0.85rem; font-weight: 600; }
+        .company-name { color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
+
+        ul.achievements { list-style: none; }
+        ul.achievements li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        ul.achievements li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--highlight);
+            font-weight: bold;
+        }
+
+        @media (max-width: 850px) {
+            .resume-card { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 1px solid #e2e8f0; }
+        }
+
+        @media print {
+            body { padding: 0; background: white; }
+            .resume-card { box-shadow: none; border: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="resume-card">
+    <aside class="sidebar">
+        <div class="profile-img">SK</div>
+        
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Contact</h3>
+            <span class="contact-link">📍 Thrissur, Kerala</span>
+            <a href="tel:+919968450823" class="contact-link">📞 +91-9968450823</a>
+            <a href="mailto:sreenathcherpu@gmail.com" class="contact-link">✉️ sreenathcherpu@gmail.com</a>
+            <a href="https://linkedin.com/in/sreenath-kn-b21b5963/" class="contact-link">🔗 LinkedIn</a>
+            <a href="https://github.com/sreenath32" class="contact-link">💻 GitHub</a>
+        </div>
+
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Tech Stack</h3>
+            <div class="skill-group">
+                <span class="skill-tag">.NET Core</span>
+                <span class="skill-tag">C#</span>
+                <span class="skill-tag">Angular</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">MSSQL</span>
+                <span class="skill-tag">Microservices</span>
+                <span class="skill-tag">REST API</span>
+                <span class="skill-tag">AI/ML Integration</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Education</h3>
+            <div style="margin-bottom: 15px;">
+                <p style="font-weight: 700; font-size: 0.9rem;">M.Sc. Applied Electronics</p>
+                <p style="font-size: 0.8rem; color: var(--text-light);">Nehru Institute | 2012</p>
+            </div>
+            <div>
+                <p style="font-weight: 700; font-size: 0.9rem;">B.Sc. Electronics</p>
+                <p style="font-size: 0.8rem; color: var(--text-light);">CAS Nattika | 2010</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <h1>SREENATH <span style="color: var(--accent);">KN</span></h1>
+            <p class="role-title">Senior Software Developer & Team Lead</p>
+        </header>
+
+        <section class="summary-box">
+            Results-oriented architect with <strong>13 years of experience</strong>. Evolved from a Junior Developer to a Team Lead of 8 engineers. Expert in high-performance .NET/Angular ecosystems with a specialized focus on <strong>FinTech, Media, and AI-driven automation</strong>.
+        </section>
+
+        <h2 class="section-header">Professional Experience</h2>
+
+        <div class="experience-item">
+            <div class="job-meta">
+                <span class="job-title">Senior Software Engineer / Team Lead</span>
+                <span class="job-date">2020 – Present</span>
+            </div>
+            <span class="company-name">DataHQ Corporation | FinTech</span>
+            <ul class="achievements">
+                <li><strong>Team Leadership:</strong> Orchestrated development lifecycles for 8 engineers, improving sprint velocity through optimized code reviews and architectural standards.</li>
+                <li><strong>Performance Optimization:</strong> Spearheaded database modernization to Oracle/MySQL, achieving a <strong>40% increase in data retrieval speeds</strong>.</li>
+                <li><strong>AI Innovation:</strong> Engineered an intelligent cost-management engine using Python and AI/ML for predictive financial forecasting.</li>
+                <li><strong>Security:</strong> Architected secure API endpoints for Middle Eastern financial markets, ensuring 100% compliance with strict data regulations.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="job-meta">
+                <span class="job-title">Software Engineer</span>
+                <span class="job-date">2013 – 2020</span>
+            </div>
+            <span class="company-name">WASP3D | Real-time 3D Graphics</span>
+            <ul class="achievements">
+                <li><strong>Broadcast Engineering:</strong> Developed high-concurrency backends for 3D live graphics using C# and C++ for global media clients.</li>
+                <li><strong>Social Data Engine:</strong> Built a real-time monitoring system integrating Facebook, Instagram, and YouTube APIs for live broadcast trends.</li>
+                <li><strong>Scalable Architecture:</strong> Designed hybrid data solutions using MSSQL and MongoDB to handle massive unstructured social media streams.</li>
+                <li><strong>Workflow Automation:</strong> Created Angular-based management tools that reduced creative workflow bottlenecks by digitizing manual asset tracking.</li>
+            </ul>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
