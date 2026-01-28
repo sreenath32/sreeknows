@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sreenath KN - Senior Software Developer</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --text-dark: #1a1a2e;
+            --text-light: #4a4a5a;
+            --bg-white: #ffffff;
+            --bg-light: #f8f9fa;
+            --border: #e0e0e0;
+            --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary: #e94560; /* Highlight becomes primary text color */
+            --secondary: #1a1a2e;
+            --accent: #4ecca3;
+            --highlight: #e94560;
+            --text-dark: #e0e0e0;
+            --text-light: #a0a0a0;
+            --bg-white: #16213e; /* Dark background */
+            --bg-light: #0f3460; /* Slightly lighter dark */
+            --border: #2a2a4e;
+            --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--bg-white);
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        /* Floating Controls */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+            background: var(--highlight);
+        }
+        
+        .accent-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--highlight) 0%, var(--accent) 100%);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 60px 60px 50px;
+            position: relative;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+        
+        .contact-info a:hover {
+            color: var(--highlight);
+        }
+        
+        main {
+            padding: 50px 60px 60px;
+        }
+        
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--highlight) 0%, transparent 100%);
+            transition: width 0.3s ease;
+        }
+
+        section:hover h2::after {
+            width: 100px;
+        }
+        
+        h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .company {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        
+        .duration {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        .experience-item {
+            margin-bottom: 2.5rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border);
+            position: relative;
+            transition: border-color 0.3s;
+        }
+        
+        .experience-item:hover {
+            border-left-color: var(--highlight);
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background: var(--highlight);
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .experience-item:hover::before {
+            transform: scale(1.5);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+            color: var(--text-dark);
+        }
+        
+        li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--highlight);
+            font-weight: bold;
+        }
+        
+        strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .summary {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: var(--text-dark);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            background: var(--bg-light);
+            padding: 1.2rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--highlight);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: default;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .education-item {
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--highlight) 0%, #d43850 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.6);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: var(--bg-white);
+            color: var(--text-dark);
+            padding: 2.5rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--highlight);
+        }
+
+        .modal h3 {
+            margin-bottom: 1rem;
+        }
+
+        .modal input, .modal textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+        
+        @media print {
+            .action-buttons, .modal, .controls { display: none !important; }
+            .container { box-shadow: none; margin: 0; max-width: 100%; }
+            body { background: white; }
+            .skill-category, .education-item { break-inside: avoid; }
+        }
+        
+        @media (max-width: 768px) {
+            header, main { padding: 40px 25px; }
+            h1 { font-size: 2.5rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .controls { top: auto; bottom: 20px; right: 20px; flex-direction: column-reverse; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="control-btn" id="theme-toggle" title="Toggle Dark/Light Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="control-btn" onclick="window.print()" title="Download PDF">
+            <i class="fas fa-file-download"></i>
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="accent-bar"></div>
+        
+        <header>
+            <div class="header-content reveal active">
+                <h1>SREENATH KN</h1>
+                <p class="subtitle">Senior Software Developer</p>
+                <div class="contact-info">
+                    <a href="#"><span><i class="fas fa-map-marker-alt"></i> Thrissur, Kerala, India</span></a>
+                    <a href="tel:+919968450823"><span><i class="fas fa-phone-alt"></i> +91-9968450823</span></a>
+                    <a href="mailto:sreenathcherpu@gmail.com"><span><i class="fas fa-envelope"></i> sreenathcherpu@gmail.com</span></a>
+                    <a href="https://www.linkedin.com/in/sreenath-kn-b21b5963/" target="_blank"><span><i class="fab fa-linkedin"></i> LinkedIn</span></a>
+                    <a href="https://github.com/sreenath32" target="_blank"><span><i class="fab fa-github"></i> GitHub</span></a>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <section class="reveal">
+                <h2>Professional Summary</h2>
+                <p class="summary">
+                    Results-oriented <strong>Senior Software Developer</strong> with <strong>13 years of experience</strong> specializing in full-stack development, architectural design, and team leadership. Proven history of stability and growth, having evolved from a Junior Developer to a Team Lead managing 8 engineers. Deep expertise in the <strong>.NET ecosystem (C#, .NET Core)</strong> and modern web frameworks (<strong>Angular</strong>), with recent expansion into <strong>Python and AI-driven solutions</strong>. Extensive domain experience in <strong>Media/Broadcasting, FinTech, and Construction Tech</strong>. Adept at modernizing legacy systems and integrating complex third-party APIs.
+                </p>
+            </section>
+            
+            <section class="reveal">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <strong><i class="fas fa-code"></i> Languages</strong><br>
+                        <span>C#, Python, C++, JavaScript, TypeScript, SQL</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong><i class="fas fa-layer-group"></i> Frameworks</strong><br>
+                        <span>.NET Core, ASP.NET MVC, Angular, Web API</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong><i class="fas fa-database"></i> Databases</strong><br>
+                        <span>PostgreSQL, MSSQL, MySQL, Oracle, MongoDB</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong><i class="fas fa-brain"></i> Key Areas</strong><br>
+                        <span>Microservices, RESTful API, AI Integration, Real-time Data</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong><i class="fas fa-tools"></i> Tools & DevOps</strong><br>
+                        <span>Git, SVN, Visual Studio, VS Code, CI/CD</span>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="reveal">
+                <h2>Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <h3>Senior Software Engineer / Team Lead</h3>
+                            <p class="company"><a href="https://datahq.ai/" target="_blank" style="color: var(--accent); text-decoration: none;">DataHQ Corporation</a> | FinTech & Intelligent Automation</p>
+                        </div>
+                        <span class="duration">December 2020 – Present</span>
+                    </div>
+                    <ul>
+                        <li><strong>Team Leadership:</strong> Managing and mentoring 8 developers. Sprint planning, code reviews, architectural standards.</li>
+                        <li><strong>FinTech Platform:</strong> Leading backend/frontend development using .NET Core and Angular for Middle Eastern markets.</li>
+                        <li><strong>Database Modernization:</strong> Transitioned to Oracle and MySQL, optimized queries improving retrieval speeds by 40%.</li>
+                        <li><strong>AI & Construction Tech:</strong> Built cost-management engine using Python and PostgreSQL with AI/ML for cost forecasting.</li>
+                        <li><strong>API Security:</strong> Designed secure endpoints for sensitive financial data with strict compliance.</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <h3>Software Engineer</h3>
+                            <p class="company"><a href="https://wasp3d.com/" target="_blank" style="color: var(--accent); text-decoration: none;">WASP3D</a> | Real-time 3D Graphics & Media</p>
+                        </div>
+                        <span class="duration">December 2013 – April 2020</span>
+                    </div>
+                    <ul>
+                        <li><strong>High-Performance Engineering:</strong> Developed backend for 3D live graphics using C# and C++ for broadcast environments.</li>
+                        <li><strong>Social Media Engine:</strong> Built real-time trend monitoring from Facebook, Instagram, YouTube APIs.</li>
+                        <li><strong>Data Architecture:</strong> Managed hybrid databases (MSSQL, MongoDB) for structured and unstructured data.</li>
+                        <li><strong>Full-Stack Tools:</strong> Created ASP.NET and Angular management tools improving creative workflow.</li>
+                        <li><strong>Legacy Maintenance:</strong> Optimized C++ modules ensuring stability during platform modernization.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="reveal">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>M.Sc. in Applied Electronics</h3>
+                    <p>Nehru Institute of Engineering and Technology | 2012</p>
+                </div>
+                <div class="education-item">
+                    <h3>B.Sc. in Electronics</h3>
+                    <p>CAS Nattika | 2010</p>
+                </div>
+            </section>
+
+            <div class="action-buttons reveal">
+                <button class="btn btn-secondary" onclick="window.print()">
+                    <i class="fas fa-file-pdf"></i> Download Resume
+                </button>
+            </div>
+        </main>
+    </div>
+    
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3>Contact Sreenath</h3>
+            <p style="margin-bottom: 15px; color: var(--text-light)">Send me a message directly or schedule a call.</p>
+            <form onsubmit="event.preventDefault(); alert('Thank you! This is a demo form, but in a real site, this would email Sreenath.'); closeModal();">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="4" placeholder="Message or Opportunity details..." required></textarea>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const icon = themeBtn.querySelector('i');
+        
+        // Check for saved user preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                document.body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+
+        // Scroll Animation Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // Modal Logic
+        const modal = document.getElementById('contactModal');
+        
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
