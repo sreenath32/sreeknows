@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sreenath KN - Senior Software Developer</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
@@ -507,9 +506,9 @@
                         <p class="title">Senior Software Developer</p>
 
                         <div class="contact-info">
-                            <a href="/cdn-cgi/l/email-protection#cbb8b9aeaea5aabfa3a8a3aeb9bbbe8baca6aaa2a7e5a8a4a6" class="contact-link" aria-label="Email">
+                            <a id="cf-email-link" href="#" class="contact-link" aria-label="Email">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                <span class="__cf_email__" data-cfemail="3b48495e5e555a4f5358535e494b4e7b5c565a525715585456">[email&#160;protected]</span>
+                                <span id="cf-email-text">sreenathcherpu&#64;gmail.com</span>
                             </a>
 
                             <a href="tel:+919968450823" class="contact-link" aria-label="Phone">
@@ -834,41 +833,71 @@
         </div><!-- /resume-content -->
     </div><!-- /container -->
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script data-cfasync="false">
+        // ── Fix email: set href via JS so Cloudflare can't obfuscate it ──
+        (function() {
+            var u = 'sreenathcherpu';
+            var d = 'gmail.com';
+            var full = u + '@' + d;
+            var link = document.getElementById('cf-email-link');
+            var text = document.getElementById('cf-email-text');
+            if (link) link.setAttribute('href', 'mailto:' + full);
+            if (text) text.textContent = full;
+        })();
+
+        // ── Download PDF ──
         function downloadPDF() {
-            const btn = document.querySelector('.download-button');
+            if (typeof html2pdf === 'undefined') {
+                alert('PDF library not loaded yet. Please wait a moment and try again.');
+                return;
+            }
+            var btn = document.querySelector('.download-button');
             btn.textContent = 'Generating…';
             btn.disabled = true;
 
-            const element = document.querySelector('.resume-content');
-            const opt = {
-                margin:       [10, 10, 10, 10],
-                filename:     'Sreenath_KN_Resume.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            var element = document.querySelector('.resume-content');
+            var opt = {
+                margin:      [8, 8, 8, 8],
+                filename:    'Sreenath_KN_Resume.pdf',
+                image:       { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, logging: false },
+                jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            html2pdf().set(opt).from(element).save().then(() => {
-                btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5"/></svg> Download PDF`;
+            html2pdf().set(opt).from(element).save().then(function() {
+                btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5"/></svg> Download PDF';
+                btn.disabled = false;
+            }).catch(function(err) {
+                console.error('PDF error:', err);
+                btn.innerHTML = 'Download PDF';
                 btn.disabled = false;
             });
         }
 
-        // Animate skill bars on load
-        window.addEventListener('load', () => {
-            const fills = document.querySelectorAll('.skill-bar-fill');
-            setTimeout(() => {
-                fills.forEach(bar => {
+        // ── Animate skill bars on page load ──
+        window.addEventListener('load', function() {
+            var fills = document.querySelectorAll('.skill-bar-fill');
+            setTimeout(function() {
+                fills.forEach(function(bar) {
                     bar.style.width = bar.dataset.width + '%';
                 });
             }, 200);
         });
 
-        // Try loading the photo — fall back to initials if missing
-        (function () {
-            const wrapper = document.getElementById('photoWrapper');
-            const img = new Image();
-            img.onload = () => {
-                img.className = 'profile
+        // ── Profile photo: try loading photo.jpeg, fall back to SK initials ──
+        (function() {
+            var wrapper = document.getElementById('photoWrapper');
+            if (!wrapper) return;
+            var img = new Image();
+            img.onload = function() {
+                img.className = 'profile-photo';
+                img.alt = 'Sreenath KN';
+                wrapper.replaceWith(img);
+            };
+            img.onerror = function() { /* keep SK initials tile */ };
+            img.src = 'photo.jpeg';
+        })();
+    </script>
+</body>
+</html>
