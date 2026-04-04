@@ -4,150 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sreenath KN - Senior Software Developer</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --navy: #0f172a;
+            --blue: #2563eb;
+            --blue-light: #dbeafe;
+            --blue-mid: #93c5fd;
+            --ink: #1e293b;
+            --muted: #64748b;
+            --rule: #e2e8f0;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --accent: #0ea5e9;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-                sans-serif;
-            background-color: #f9fafb;
-            color: #333;
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--ink);
             line-height: 1.6;
         }
 
-        .container {
-            background-color: #f9fafb;
-            padding-bottom: 2rem;
-        }
-
+        /* ── Download Button ───────────────────── */
         .download-button {
             position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 50;
-            background-color: #2563eb;
+            top: 1.25rem;
+            right: 1.25rem;
+            z-index: 100;
+            background: var(--navy);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 2rem;
             border: none;
             cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.875rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 20px rgba(15,23,42,0.25);
+            transition: all 0.25s ease;
+            letter-spacing: 0.02em;
         }
-
         .download-button:hover {
-            background-color: #1d4ed8;
+            background: var(--blue);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(37,99,235,0.35);
         }
+        .download-button svg { width: 1rem; height: 1rem; }
 
-        .download-button svg {
-            width: 1.25rem;
-            height: 1.25rem;
+        /* ── Page Layout ───────────────────────── */
+        .container {
+            background: var(--bg);
+            padding-bottom: 3rem;
         }
 
         .resume-content {
-            max-width: 56rem;
+            max-width: 58rem;
             margin: 0 auto;
-            background-color: white;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.08);
         }
 
         @media (min-width: 768px) {
             .resume-content {
-                padding: 3rem;
                 margin-top: 2rem;
                 margin-bottom: 2rem;
-                border-radius: 0.5rem;
+                border-radius: 1rem;
+                overflow: hidden;
             }
         }
 
+        /* ── Header ────────────────────────────── */
         .header {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid #d1d5db;
+            background: var(--navy);
+            padding: 2.5rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 260px; height: 260px;
+            border-radius: 50%;
+            background: rgba(37,99,235,0.18);
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: 30%;
+            width: 320px; height: 320px;
+            border-radius: 50%;
+            background: rgba(14,165,233,0.1);
         }
 
         .header-content {
             display: flex;
             align-items: center;
             gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-photo {
-            width: 10rem;
-            height: 10rem;
-            border-radius: 0.5rem;
+            width: 9rem;
+            height: 9rem;
+            border-radius: 0.75rem;
             object-fit: cover;
-            border: 2px solid #e5e7eb;
+            border: 3px solid rgba(255,255,255,0.15);
             flex-shrink: 0;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
-        .header-info {
-            flex: 1;
+        .profile-initials {
+            width: 9rem;
+            height: 9rem;
+            border-radius: 0.75rem;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #2563eb, #0ea5e9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            border: 3px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
         }
 
         .header-info h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 0.25rem;
-            line-height: 1.2;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 0.35rem;
+            letter-spacing: -0.02em;
         }
 
         .header-info .title {
-            font-size: 1.25rem;
-            color: #2563eb;
-            font-weight: 600;
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--blue-mid);
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
         }
 
-        /* CONTACT SECTION STYLES */
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem 1.5rem;
-            font-size: 0.9rem;
-            color: #4b5563;
-            margin-top: 1rem;
+            gap: 0.6rem 1.25rem;
         }
 
         .contact-link {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: #4b5563;
+            gap: 0.4rem;
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
-            transition: color 0.2s ease;
-            padding: 0.25rem 0;
+            font-size: 0.82rem;
+            font-weight: 400;
+            transition: color 0.2s;
+            padding: 0.15rem 0;
         }
+        .contact-link:hover { color: #ffffff; }
+        .contact-link svg { width: 0.9rem; height: 0.9rem; flex-shrink: 0; opacity: 0.7; }
 
-        .contact-link:hover {
-            color: #2563eb;
-        }
-
-        .contact-link svg {
-            width: 1.1rem;
-            height: 1.1rem;
-            flex-shrink: 0;
-            color: #6b7280;
-        }
-
-        .contact-link:hover svg {
-            color: #2563eb;
+        /* ── Body Sections ──────────────────────── */
+        .body-content {
+            padding: 2.5rem 3rem;
         }
 
         section {
@@ -155,275 +191,329 @@
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
             font-weight: 700;
-            color: #111827;
+            color: var(--navy);
             margin-bottom: 1.25rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #2563eb;
+            border-bottom: 2px solid var(--rule);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            letter-spacing: 0.04em;
             text-transform: uppercase;
-            letter-spacing: 0.025em;
         }
 
-        h3 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #111827;
+        h2 .section-bar {
+            display: inline-block;
+            width: 3px;
+            height: 1.1em;
+            background: var(--blue);
+            border-radius: 2px;
         }
 
-        /* Professional Summary */
+        /* ── Summary ────────────────────────────── */
         .summary-text {
-            color: #374151;
-            line-height: 1.8;
-            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.85;
+            font-size: 0.95rem;
+            font-weight: 300;
+            border-left: 3px solid var(--blue);
+            padding-left: 1rem;
         }
 
-        /* Technical Skills */
+        /* ── Skills ─────────────────────────────── */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1.75rem 3rem;
         }
 
         .skill-category h3 {
-            color: #111827;
-            margin-bottom: 0.75rem;
-            border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.85rem;
         }
 
-        .skill-list {
-            list-style: none;
-            font-size: 0.925rem;
-            color: #374151;
-            line-height: 1.8;
+        .skill-item {
+            margin-bottom: 0.65rem;
         }
 
-        /* Work Experience */
+        .skill-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.3rem;
+        }
+
+        .skill-name {
+            font-size: 0.875rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .skill-pct {
+            font-size: 0.75rem;
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        .skill-bar-track {
+            height: 5px;
+            background: var(--rule);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 99px;
+            background: linear-gradient(90deg, var(--blue), var(--accent));
+            width: 0%;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ── Work Experience ─────────────────────── */
         .job {
             margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--rule);
         }
+        .job:last-child { border-bottom: none; padding-bottom: 0; }
 
         .job-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            gap: 1rem;
         }
 
         .job-title {
-            font-size: 1.25rem;
-            color: #111827;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--navy);
         }
 
         .job-company {
-            color: #2563eb;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-top: 0.25rem;
+            color: var(--blue);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
         }
 
-        /* New class for Company Links */
         .company-link {
-            color: inherit; /* Inherit blue from job-company */
+            color: inherit;
             text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-bottom 0.2s ease;
         }
-
-        .company-link:hover {
-            border-bottom: 1px solid currentColor;
-        }
+        .company-link:hover { text-decoration: underline; }
 
         .job-period {
-            font-size: 0.875rem;
-            color: #4b5563;
-            font-weight: 600;
+            font-size: 0.78rem;
+            color: white;
+            font-weight: 500;
             white-space: nowrap;
+            background: var(--navy);
+            padding: 0.2rem 0.65rem;
+            border-radius: 99px;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
         }
 
         .job-details {
-            font-size: 0.925rem;
-            color: #374151;
-            margin-left: 1rem;
-            list-style-type: disc;
-            padding-left: 0.5rem;
-            line-height: 1.6;
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-left: 0;
+            list-style: none;
+            padding-left: 0;
+            line-height: 1.65;
         }
 
         .job-details li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.45rem;
+            padding-left: 1.1rem;
+            position: relative;
+        }
+        .job-details li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--blue);
+            font-weight: 700;
         }
 
         .job-details li strong {
-            color: #1f2937;
+            color: var(--ink);
+            font-weight: 600;
         }
 
-        /* Featured Projects */
+        /* ── Projects ───────────────────────────── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
         .project {
-            background-color: #f8fafc;
-            border-left: 4px solid #2563eb;
-            padding: 1rem 1.25rem;
-            margin-bottom: 1.25rem;
-            border-radius: 0 0.5rem 0.5rem 0;
+            background: var(--bg);
+            border: 1px solid var(--rule);
+            border-top: 3px solid var(--blue);
+            padding: 1.1rem 1.2rem;
+            border-radius: 0 0 0.5rem 0.5rem;
         }
 
         .project h3 {
-            color: #1f2937;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
         }
 
         .project p {
-            font-size: 0.925rem;
-            color: #4b5563;
-            margin-top: 0.5rem;
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
         }
 
         .project-tech {
-            font-size: 0.85rem;
-            color: #2563eb;
-            margin-top: 0.75rem;
-            font-family: monospace;
-            background: #e0e7ff;
+            font-size: 0.75rem;
+            color: var(--blue);
+            margin-top: 0.65rem;
+            font-family: 'DM Mono', monospace;
+            background: var(--blue-light);
             display: inline-block;
-            padding: 0.2rem 0.5rem;
+            padding: 0.15rem 0.5rem;
             border-radius: 0.25rem;
+            font-weight: 500;
         }
 
-        /* Education */
+        /* ── Education ──────────────────────────── */
         .education-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1.25rem;
+        }
+
+        .education-item {
+            background: var(--bg);
+            border: 1px solid var(--rule);
+            padding: 1rem 1.25rem;
+            border-radius: 0.5rem;
         }
 
         .education-item h3 {
-            color: #111827;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--navy);
         }
 
         .education-item p {
-            font-size: 0.925rem;
-            color: #4b5563;
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
         }
 
         .education-year {
-            font-size: 0.875rem;
-            color: #2563eb;
+            font-size: 0.78rem;
+            color: var(--blue);
             font-weight: 600;
-            margin-top: 0.25rem;
+            margin-top: 0.35rem;
         }
 
-        /* Print Styles */
+        /* ── Print Styles ───────────────────────── */
         @media print {
-            body {
-                background: white;
-                color: #000;
-            }
+            @page { margin: 1.2cm; }
 
-            .download-button {
-                display: none !important;
-            }
+            body { background: white; }
+
+            .download-button { display: none !important; }
 
             .resume-content {
                 box-shadow: none;
                 max-width: 100%;
-                padding: 0;
                 margin: 0;
+                border-radius: 0;
             }
 
             .header {
-                border-bottom: 2px solid #000;
+                background: var(--navy) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
-            h2 {
-                border-bottom: 2px solid #000;
-            }
+            .body-content { padding: 1.5rem 2rem; }
 
-            .project {
-                border-left: 4px solid #000;
-                background-color: transparent;
-            }
-            
-            a {
-                text-decoration: none;
-                color: #000 !important;
-            }
+            section { page-break-inside: avoid; }
+            .job { page-break-inside: avoid; }
+            .project { page-break-inside: avoid; }
 
-            .contact-link svg {
-                display: none;
-            }
-
-            /* Ensure company links don't look like hyperlinks in print if preferred, 
-               or keep them. Defaulting to standard text look. */
-            .company-link {
-                border-bottom: none;
-            }
-
-            section {
-                page-break-inside: avoid;
-            }
-
-            .job {
-                page-break-inside: avoid;
-            }
-
-            .project {
-                page-break-inside: avoid;
+            .skill-bar-fill {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
         }
 
+        /* ── Responsive ─────────────────────────── */
         @media (max-width: 768px) {
+            .header { padding: 2rem 1.5rem; }
+            .body-content { padding: 1.75rem 1.5rem; }
+
             .header-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
-            .header-info {
-                text-align: center;
-                width: 100%;
-            }
 
-            .contact-info {
-                justify-content: center;
-            }
+            .header-info h1 { font-size: 1.9rem; }
 
-            .job-header {
-                flex-direction: column;
-            }
+            .contact-info { justify-content: center; }
 
             .skills-grid,
-            .education-grid {
+            .education-grid,
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
+
+            .job-header { flex-direction: column; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <button class="download-button" onclick="window.print()">
-            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01"/>
+
+        <!-- Download Button -->
+        <button class="download-button" onclick="downloadPDF()" aria-label="Download PDF">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5"/>
             </svg>
+            Download PDF
         </button>
 
         <div class="resume-content">
+
+            <!-- ── HEADER ── -->
             <div class="header">
                 <div class="header-content">
-                    <img src="photo.jpeg" alt="Sreenath KN" class="profile-photo">
+
+                    <!-- Profile photo or initials fallback -->
+                    <div class="profile-initials" id="photoWrapper">SK</div>
+
                     <div class="header-info">
                         <h1>Sreenath KN</h1>
                         <p class="title">Senior Software Developer</p>
-                        
+
                         <div class="contact-info">
                             <a href="mailto:sreenathcherpu@gmail.com" class="contact-link" aria-label="Email">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                 sreenathcherpu@gmail.com
                             </a>
-                            
+
                             <a href="tel:+919968450823" class="contact-link" aria-label="Phone">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                +91 9968450823
+                                +91 99684 50823
                             </a>
 
                             <a href="https://linkedin.com/in/sreenath-kn-b21b5963" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="LinkedIn">
@@ -445,169 +535,285 @@
                 </div>
             </div>
 
-            <section>
-                <h2>Professional Summary</h2>
-                <p class="summary-text">
-                    13+ years of experience building scalable, high-performance solutions in .NET, Angular, and Python. Currently leading a team of 8 engineers at DataHQ, specializing in FinTech platforms and AI-driven construction technology. Proven expertise in system architecture, team leadership, database optimization, and modern development practices.
-                </p>
-            </section>
+            <!-- ── BODY ── -->
+            <div class="body-content">
 
-            <section>
-                <h2>Technical Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Languages</h3>
-                        <ul class="skill-list">
-                            <li>• C# / .NET (95%)</li>
-                            <li>• Python (85%)</li>
-                            <li>• TypeScript / JavaScript (90%)</li>
-                            <li>• SQL (92%)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Frameworks & Tools</h3>
-                        <ul class="skill-list">
-                            <li>• .NET Core / ASP.NET (95%)</li>
-                            <li>• Angular (88%)</li>
-                            <li>• RESTful APIs (94%)</li>
-                            <li>• Microservices (85%)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Databases</h3>
-                        <ul class="skill-list">
-                            <li>• PostgreSQL / MSSQL (92%)</li>
-                            <li>• Oracle / MySQL (85%)</li>
-                            <li>• MongoDB (80%)</li>
-                            <li>• Clickhouse (60%)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Specializations</h3>
-                        <ul class="skill-list">
-                            <li>• Team Leadership (90%)</li>
-                            <li>• AI/ML Integration (75%)</li>
-                            <li>• System Architecture (88%)</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+                <!-- Professional Summary -->
+                <section>
+                    <h2><span class="section-bar"></span>Professional Summary</h2>
+                    <p class="summary-text">
+                        13+ years of experience building scalable, high-performance solutions in .NET, Angular, and Python. Currently leading a team of 8 engineers at DataHQ, specializing in FinTech platforms and AI-driven construction technology. Proven expertise in system architecture, team leadership, database optimization, and modern development practices.
+                    </p>
+                </section>
 
-            <section>
-                <h2>Work Experience</h2>
+                <!-- Technical Skills -->
+                <section>
+                    <h2><span class="section-bar"></span>Technical Skills</h2>
+                    <div class="skills-grid">
 
-                <div class="job">
-                    <div class="job-header">
-                        <div>
-                            <h3 class="job-title">Senior Software Engineer / Team Lead</h3>
-                            <p class="job-company">
-                                <a href="https://www.datahq.ai/" target="_blank" rel="noopener noreferrer" class="company-link">DataHQ Corporation</a> — FinTech & Intelligent Automation
-                            </p>
+                        <div class="skill-category">
+                            <h3>Languages</h3>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">C# / .NET</span>
+                                    <span class="skill-pct">95%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">TypeScript / JavaScript</span>
+                                    <span class="skill-pct">90%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">SQL</span>
+                                    <span class="skill-pct">92%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">Python</span>
+                                    <span class="skill-pct">85%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+                            </div>
                         </div>
-                        <span class="job-period">Dec 2020 – Present</span>
-                    </div>
-                    <ul class="job-details">
-                        <li>
-                            <strong>Team Leadership:</strong> Managing and mentoring 8 developers. Sprint planning, code reviews, architectural standards.
-                        </li>
-                        <li>
-                            <strong>FinTech Platform:</strong> Leading backend/frontend development using .NET Core and Angular for Middle Eastern markets.
-                        </li>
-                        <li>
-                            <strong>Database Modernization:</strong> Transitioned to Oracle and MySQL, optimized queries improving retrieval speeds by 40%.
-                        </li>
-                        <li>
-                            <strong>AI & Construction Tech:</strong> Built cost-management engine using Python and PostgreSQL with AI/ML for cost forecasting.
-                        </li>
-                        <li>
-                            <strong>API Security:</strong> Designed secure endpoints for sensitive financial data with strict compliance.
-                        </li>
-                    </ul>
-                </div>
 
-                <div class="job">
-                    <div class="job-header">
-                        <div>
-                            <h3 class="job-title">Software Engineer</h3>
-                            <p class="job-company">
-                                <a href="https://wasp3d.com/" target="_blank" rel="noopener noreferrer" class="company-link">WASP3D</a> — Real-time 3D Graphics & Media
-                            </p>
+                        <div class="skill-category">
+                            <h3>Frameworks & Tools</h3>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">.NET Core / ASP.NET</span>
+                                    <span class="skill-pct">95%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">RESTful APIs</span>
+                                    <span class="skill-pct">94%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="94"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">Angular</span>
+                                    <span class="skill-pct">88%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">Microservices</span>
+                                    <span class="skill-pct">85%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+                            </div>
                         </div>
-                        <span class="job-period">Dec 2013 – Dec 2020</span>
+
+                        <div class="skill-category">
+                            <h3>Databases</h3>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">PostgreSQL / MSSQL</span>
+                                    <span class="skill-pct">92%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">Oracle / MySQL</span>
+                                    <span class="skill-pct">85%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">MongoDB</span>
+                                    <span class="skill-pct">80%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">Clickhouse</span>
+                                    <span class="skill-pct">60%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="60"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Specializations</h3>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">System Architecture</span>
+                                    <span class="skill-pct">88%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">Team Leadership</span>
+                                    <span class="skill-pct">90%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label">
+                                    <span class="skill-name">AI/ML Integration</span>
+                                    <span class="skill-pct">75%</span>
+                                </div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+                            </div>
+                        </div>
+
                     </div>
-                    <ul class="job-details">
-                        <li>
-                            <strong>High-Performance Engineering:</strong> Developed backend for 3D live graphics using C# and C++ for broadcast environments.
-                        </li>
-                        <li>
-                            <strong>Social Media Engine:</strong> Built real-time trend monitoring from Facebook, Instagram, YouTube APIs.
-                        </li>
-                        <li>
-                            <strong>Data Architecture:</strong> Managed hybrid databases (MSSQL, MongoDB) for structured and unstructured data.
-                        </li>
-                        <li>
-                            <strong>Full-Stack Tools:</strong> Created ASP.NET and Angular management tools improving creative workflow.
-                        </li>
-                        <li>
-                            <strong>Legacy Maintenance:</strong> Optimized C++ modules ensuring stability during platform modernization.
-                        </li>
-                    </ul>
-                </div>
-            </section>
+                </section>
 
-            <section>
-                <h2>Featured Projects</h2>
+                <!-- Work Experience -->
+                <section>
+                    <h2><span class="section-bar"></span>Work Experience</h2>
 
-                <div class="project">
-                    <h3>FinTech Trading Platform</h3>
-                    <p>
-                        Led the development of a comprehensive trading platform for Middle Eastern markets, handling real-time transactions and strict regulatory compliance.
-                    </p>
-                    <p class="project-tech"><strong>Tech:</strong> .NET Core, Angular, Oracle, Azure</p>
-                </div>
-
-                <div class="project">
-                    <h3>AI Cost Forecasting Engine</h3>
-                    <p>
-                        Built an intelligent cost management system for construction projects, utilizing ML algorithms for accurate cost predictions and budget optimization.
-                    </p>
-                    <p class="project-tech"><strong>Tech:</strong> Python, PostgreSQL, Machine Learning, REST API</p>
-                </div>
-
-                <div class="project">
-                    <h3>Real-time Broadcast Graphics</h3>
-                    <p>
-                        Developed backend systems for live 3D broadcast graphics used by major TV networks, processing real-time social media data streams.
-                    </p>
-                    <p class="project-tech"><strong>Tech:</strong> C#, C++, MongoDB, WebSockets</p>
-                </div>
-            </section>
-
-            <section>
-                <h2>Education</h2>
-
-                <div class="education-grid">
-                    <div class="education-item">
-                        <h3>M.Sc. Applied Electronics</h3>
-                        <p>Nehru Institute of Engineering and Technology</p>
-                        <p class="education-year">2012</p>
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Senior Software Engineer / Team Lead</h3>
+                                <p class="job-company">
+                                    <a href="https://www.datahq.ai/" target="_blank" rel="noopener noreferrer" class="company-link">DataHQ Corporation</a>
+                                    &mdash; FinTech &amp; Intelligent Automation
+                                </p>
+                            </div>
+                            <span class="job-period">Dec 2020 – Present</span>
+                        </div>
+                        <ul class="job-details">
+                            <li><strong>Team Leadership:</strong> Managing and mentoring 8 developers. Sprint planning, code reviews, architectural standards.</li>
+                            <li><strong>FinTech Platform:</strong> Leading backend/frontend development using .NET Core and Angular for Middle Eastern markets.</li>
+                            <li><strong>Database Modernization:</strong> Transitioned to Oracle and MySQL, optimized queries improving retrieval speeds by 40%.</li>
+                            <li><strong>AI &amp; Construction Tech:</strong> Built cost-management engine using Python and PostgreSQL with AI/ML for cost forecasting.</li>
+                            <li><strong>API Security:</strong> Designed secure endpoints for sensitive financial data with strict compliance.</li>
+                        </ul>
                     </div>
 
-                    <div class="education-item">
-                        <h3>B.Sc. Electronics</h3>
-                        <p>CAS Nattika</p>
-                        <p class="education-year">2010</p>
+                    <div class="job">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Software Engineer</h3>
+                                <p class="job-company">
+                                    <a href="https://wasp3d.com/" target="_blank" rel="noopener noreferrer" class="company-link">WASP3D</a>
+                                    &mdash; Real-time 3D Graphics &amp; Media
+                                </p>
+                            </div>
+                            <span class="job-period">Dec 2013 – Dec 2020</span>
+                        </div>
+                        <ul class="job-details">
+                            <li><strong>High-Performance Engineering:</strong> Developed backend for 3D live graphics using C# and C++ for broadcast environments.</li>
+                            <li><strong>Social Media Engine:</strong> Built real-time trend monitoring from Facebook, Instagram, YouTube APIs.</li>
+                            <li><strong>Data Architecture:</strong> Managed hybrid databases (MSSQL, MongoDB) for structured and unstructured data.</li>
+                            <li><strong>Full-Stack Tools:</strong> Created ASP.NET and Angular management tools improving creative workflow.</li>
+                            <li><strong>Legacy Maintenance:</strong> Optimized C++ modules ensuring stability during platform modernization.</li>
+                        </ul>
                     </div>
-                </div>
-            </section>
-        </div>
-    </div>
+                </section>
 
+                <!-- Featured Projects -->
+                <section>
+                    <h2><span class="section-bar"></span>Featured Projects</h2>
+                    <div class="projects-grid">
+
+                        <div class="project">
+                            <h3>FinTech Trading Platform</h3>
+                            <p>Comprehensive trading platform for Middle Eastern markets with real-time transactions and strict regulatory compliance.</p>
+                            <p class="project-tech">.NET Core · Angular · Oracle · Azure</p>
+                        </div>
+
+                        <div class="project">
+                            <h3>AI Cost Forecasting Engine</h3>
+                            <p>Intelligent cost management for construction projects using ML algorithms for accurate predictions and budget optimization.</p>
+                            <p class="project-tech">Python · PostgreSQL · ML · REST API</p>
+                        </div>
+
+                        <div class="project">
+                            <h3>Real-time Broadcast Graphics</h3>
+                            <p>Backend systems for live 3D broadcast graphics used by major TV networks, processing real-time social media streams.</p>
+                            <p class="project-tech">C# · C++ · MongoDB · WebSockets</p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Education -->
+                <section>
+                    <h2><span class="section-bar"></span>Education</h2>
+                    <div class="education-grid">
+
+                        <div class="education-item">
+                            <h3>M.Sc. Applied Electronics</h3>
+                            <p>Nehru Institute of Engineering and Technology</p>
+                            <p class="education-year">2012</p>
+                        </div>
+
+                        <div class="education-item">
+                            <h3>B.Sc. Electronics</h3>
+                            <p>CAS Nattika</p>
+                            <p class="education-year">2010</p>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div><!-- /body-content -->
+        </div><!-- /resume-content -->
+    </div><!-- /container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
-        // Enhance download functionality
-        document.querySelector('.download-button').addEventListener('click', function() {
-            window.print();
+        function downloadPDF() {
+            const btn = document.querySelector('.download-button');
+            btn.textContent = 'Generating…';
+            btn.disabled = true;
+
+            const element = document.querySelector('.resume-content');
+            const opt = {
+                margin:       [10, 10, 10, 10],
+                filename:     'Sreenath_KN_Resume.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, logging: false },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5"/></svg> Download PDF`;
+                btn.disabled = false;
+            });
+        }
+
+        // Animate skill bars on load
+        window.addEventListener('load', () => {
+            const fills = document.querySelectorAll('.skill-bar-fill');
+            setTimeout(() => {
+                fills.forEach(bar => {
+                    bar.style.width = bar.dataset.width + '%';
+                });
+            }, 200);
         });
+
+        // Try loading the photo — fall back to initials if missing
+        (function () {
+            const wrapper = document.getElementById('photoWrapper');
+            const img = new Image();
+            img.onload = () => {
+                img.className = 'profile-photo';
+                img.alt = 'Sreenath KN';
+                wrapper.replaceWith(img);
+            };
+            img.onerror = () => { /* keep initials fallback */ };
+            img.src = 'photo.jpeg';
+        })();
     </script>
 </body>
 </html>
